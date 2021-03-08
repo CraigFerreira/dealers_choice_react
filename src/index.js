@@ -26,7 +26,14 @@ class App extends React.Component{
                     {
                         authors.map((author, idx)=>{
                             return (
-                                <li key={idx}>{author.name}</li>
+                                <li key={idx}>
+                                    {author.name}
+                                    <ul>
+                                        {author.books.map((book)=>{
+                                            return <li>{book.name}</li>
+                                        })}
+                                    </ul>
+                                </li>
                             )
                         })
                     }

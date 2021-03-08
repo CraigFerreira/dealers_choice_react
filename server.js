@@ -23,7 +23,7 @@ init()
 
 app.get('/api/data', async(req, res)=>{
     try{
-        const authors=await Author.findAll()
+        const authors=await Author.findAll({include: [{model: Book}]})
         console.log(authors)
         res.send(authors)
     }catch(err){
