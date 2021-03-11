@@ -8,7 +8,9 @@ const path= require('path')
 app.get('/', (req, res, next)=>{res.sendFile(path.join(__dirname, 'client/index.html'))})
 app.use('/src', express.static(path.join(__dirname, 'src')))
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
-app.use(express.urlencoded({extended: false}))
+// app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 const init= async()=>{
     syncAndSeed()
@@ -29,4 +31,14 @@ app.get('/api/data', async(req, res)=>{
     }catch(err){
         console.log(err)
     }
+})
+
+app.delete('api/delete', async(req, res)=>{
+    const deleteId= req.body
+    console.log('delete id', deleteId)
+  try{
+    // const authorToDelete= await Author.find({where:{id: deleteId}})
+  }catch(err){
+      console.log(err)
+  }
 })

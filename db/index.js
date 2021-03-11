@@ -5,9 +5,9 @@ const Book= require('./books');
 const { model } = require('./db');
 
 const authors = [
-    { name: 'Tolkien', authorPicture: 'default-writer.jpg' },
-    { name: 'Arthur Conan Doyle', authorPicture: 'default-writer.jpg'},
-    { name: 'Charles Dickens', authorPicture: 'default-writer.jpg' }
+    { name: 'Tolkien', authorPicture: 'http://www.gstatic.com/tv/thumb/persons/160610/160610_v9_bb.jpg' },
+    { name: 'Arthur Conan Doyle', authorPicture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Conan_doyle.jpg/1200px-Conan_doyle.jpg'},
+    { name: 'Charles Dickens', authorPicture: 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Dickens_Gurney_head.jpg' }
 ];
 
 
