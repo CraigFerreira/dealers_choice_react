@@ -57,5 +57,7 @@ const syncAndSeed= async()=>{
 module.exports= {
     syncAndSeed,
         Author,
-        Book
+        Book,
+        authors,
+        books
 }

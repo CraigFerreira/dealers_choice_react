@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import AddAuthor from './addAuthors.js'
 
 document.getElementById('app')
 
@@ -17,12 +18,12 @@ class App extends React.Component{
         this.setState({authors});
     }
 
-    async deleteAuthor(e){
-        console.log('index is ', e)
+    async deleteAuthor(id){
+        console.log('index is ', id)
         const authors=[...this.state.authors]
-        authors.splice(e, 1)
+        authors.splice(id, 1)
         this.setState({authors})
-        await axios.post('api/delete', {e})
+        await axios.delete(`/api/authors/${id+1}`)
     }
 
     // deleteRow: function(index) {
@@ -36,6 +37,7 @@ class App extends React.Component{
         return(
             <div>
                 <h1>Authors and Books</h1>
+                <AddAuthor/>
                 <ul>
                     {
                         authors.map((author, idx)=>{
@@ -45,7 +47,7 @@ class App extends React.Component{
                                     <br>
                                     </br>
 
-                                    <button onClick={this.deleteAuthor.bind(this, idx)}>Delete Author</button>
+                                    <button onClick={()=>{this.deleteAuthor(idx)}}>Delete Author</button>
                                     <ul>
                                         {author.books.map((book,idx)=>{
                                             return <li key={idx}>{book.name}</li>

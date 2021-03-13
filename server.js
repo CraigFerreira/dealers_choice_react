@@ -1,4 +1,4 @@
-const {syncAndSeed, Author, Book} = require('./db/index.js')
+const {syncAndSeed, Author, Book, authors, books} = require('./db/index.js')
 
 const express= require('express');
 const app= express()
@@ -33,11 +33,12 @@ app.get('/api/data', async(req, res)=>{
     }
 })
 
-app.delete('api/delete', async(req, res)=>{
-    const deleteId= req.body
-    console.log('delete id', deleteId)
+app.delete('/api/authors/:id', async(req, res)=>{
+    const {id}= req.params
+    console.log('delete id', id)
   try{
-    // const authorToDelete= await Author.find({where:{id: deleteId}})
+    await Author.destroy({where:{id: id}})
+
   }catch(err){
       console.log(err)
   }
