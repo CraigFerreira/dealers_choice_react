@@ -11,12 +11,19 @@ class App extends React.Component{
         this.state={
             authors: []
         };
+        // this.updateAuthors=this.updateAuthors.bind(this)
     }
     async componentDidMount(){
         const authors= (await axios.get('/api/data')).data
         // console.log('yea buddy',authors)
         this.setState({authors});
     }
+
+    // async updateAuthors(author){
+    //     // const updatedAuthors=[...this.state.authors]
+    //     // this.setState({...updatedAuthors, author})
+    //     this.setState({[author.target.name]: author.target.value})
+    // }
 
     async deleteAuthor(id){
         console.log('index is ', id)
@@ -37,7 +44,7 @@ class App extends React.Component{
         return(
             <div>
                 <h1>Authors and Books</h1>
-                <AddAuthor/>
+                {/* <AddAuthor authors={this.updatedAuthors}/> */}
                 <ul>
                     {
                         authors.map((author, idx)=>{
