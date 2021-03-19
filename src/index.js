@@ -11,7 +11,7 @@ class App extends React.Component{
         this.state={
             authors: []
         };
-        // this.updateAuthors=this.updateAuthors.bind(this)
+        this.addNewAuthor=this.addNewAuthor.bind(this)
     }
     async componentDidMount(){
         const authors= (await axios.get('/api/data')).data
@@ -19,11 +19,13 @@ class App extends React.Component{
         this.setState({authors});
     }
 
-    // async updateAuthors(author){
-    //     // const updatedAuthors=[...this.state.authors]
-    //     // this.setState({...updatedAuthors, author})
-    //     this.setState({[author.target.name]: author.target.value})
-    // }
+    addNewAuthor(author){
+        let currAuthor={name: author}
+        const modAuthors= [...this.state.authors]
+        modAuthors.push(currAuthor)
+        console.log('author list print',modAuthors)
+        this.setState({authors: modAuthors})
+    }
 
     async deleteAuthor(id){
         console.log('index is ', id)
@@ -33,18 +35,12 @@ class App extends React.Component{
         await axios.delete(`/api/authors/${id+1}`)
     }
 
-    // deleteRow: function(index) {
-    //     var contacts = [...this.state.contacts];
-    //     contacts.splice(index, 1);
-    //     this.setState({contacts});
-    //   },
-
     render(){
         const {authors}=this.state;
         return(
             <div>
                 <h1>Authors and Books</h1>
-                {/* <AddAuthor authors={this.updatedAuthors}/> */}
+                <AddAuthor addNew={this.addNewAuthor}/>
                 <ul>
                     {
                         authors.map((author, idx)=>{
