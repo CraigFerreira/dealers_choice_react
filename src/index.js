@@ -20,11 +20,13 @@ class App extends React.Component{
     }
 
     addNewAuthor(author){
-        let currAuthor={name: author}
         const modAuthors= [...this.state.authors]
-        modAuthors.push(currAuthor)
-        console.log('author list print',modAuthors)
-        this.setState({authors: modAuthors})
+        let len=modAuthors.length
+        let currAuthor={id: len, name: author}
+        let newAuthors=[...modAuthors, currAuthor]
+        console.log('after array spread',newAuthors)
+        this.setState({authors: newAuthors})
+        console.log('after state change using set state',this.state.authors)
     }
 
     async deleteAuthor(id){
